@@ -31,8 +31,6 @@ class AutoSign():
   def run(self):
     self.webvpn_login()
     for i in range(len(self.nhd_username)):
-      print('username: ', self.nhd_username[i])
-      print('password: ', self.nhd_password[i])
       self.nhd_login(self.nhd_username[i], self.nhd_password[i])
     self.nhd_signin()
   
@@ -51,15 +49,15 @@ class AutoSign():
     time.sleep(1)
     self.driver.get('http://www-nexushd-org.webvpn.zju.edu.cn:8001/login.php')
 
-#     try:
-    self.driver.find_element(By.NAME, 'username').send_keys(username)
-    self.driver.find_element(By.NAME, 'password').send_keys(password)
-    print('username: ', username)
-    print('password: ', password)
-    self.driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
-    print("NHD登陆成功！")
-#     except:
-#       print("NHD登陆失败！")
+    try:
+      self.driver.find_element(By.NAME, 'username').send_keys(username)
+      self.driver.find_element(By.NAME, 'password').send_keys(password)
+      print('username: ', username)
+      print('password: ', password)
+      self.driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
+      print("NHD登陆成功！")
+    except:
+      print("NHD登陆失败！")
       
   def nhd_signin(self):
     time.sleep(1)
