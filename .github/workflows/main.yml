@@ -24,4 +24,4 @@ jobs:
           NHDACCOUNT: ${{ secrets.NHDACCOUNT }}
           NHDPASSWORD: ${{ secrets.NHDPASSWORD }}
         run: |
-          python3 test.py
+          python3 test.py ${WEBVPNACCOUNT} ${WEBVPNPASSWORD} ${NHDACCOUNT} ${NHDPASSWORD}
