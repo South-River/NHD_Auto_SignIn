@@ -47,7 +47,7 @@ class AutoSign():
     except:
       print("webvpn登陆失败！")
       
-  def nhd_login(self, usernamem, password):
+  def nhd_login(self, username, password):
     time.sleep(1)
     self.driver.get('http://www-nexushd-org.webvpn.zju.edu.cn:8001/login.php')
 
