@@ -22,17 +22,33 @@ driver = webdriver.Chrome(chrome_options=chrome_options,executable_path=chromedr
 
 driver.get('https://webvpn.zju.edu.cn/')
 time.sleep(5)
-driver.find_element(By.XPATH, '//*[@id="Calc"]/div[1]/div[1]/div/div[1]/input').send_keys('3190105607')
-driver.find_element(By.XPATH, '//*[@id="loginPwd"]').send_keys('cnh112358')
-driver.find_element(By.XPATH, '//*[@id="Calc"]/div[3]/button').click()
-
+try:
+  driver.find_element(By.XPATH, '//*[@id="Calc"]/div[1]/div[1]/div/div[1]/input').send_keys('3190105607')
+  driver.find_element(By.XPATH, '//*[@id="loginPwd"]').send_keys('cnh112358')
+  driver.find_element(By.XPATH, '//*[@id="Calc"]/div[3]/button').click()
+  print("webvpn登陆成功！")
+except:
+  print("webvpn登陆失败！")
+  
 time.sleep(1)
 driver.get('http://www-nexushd-org.webvpn.zju.edu.cn:8001/login.php')
 
-driver.find_element(By.NAME, 'username').send_keys('爆裂')
-driver.find_element(By.NAME, 'password').send_keys('cnh112358')
-driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
-
+try:
+  driver.find_element(By.NAME, 'username').send_keys('爆裂')
+  driver.find_element(By.NAME, 'password').send_keys('cnh112358')
+  driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
+  print("NHD登陆成功！")
+except:
+  print("NHD登陆失败！")
+  
 time.sleep(2)
 driver.find_element(By.XPATH, '//*[@id="shbox_text"]').send_keys('test1')
 driver.find_element(By.XPATH, '//*[@id="hbsubmit"]').click()
+
+try:
+  driver.find_element(By.XPATH, '//*[@id="info_block"]/tbody/tr/td/table/tbody/tr/td[2]/span/a[2]').click()
+  driver.find_element(By.NAME, 'content').send_keys('test')
+  driver.find_element(By.XPATH, '//*[@id="qr"]').click()
+  print("签到完成")
+except:
+  print("已经签到过")
