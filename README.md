@@ -6,12 +6,18 @@
 
 ## 使用说明
 
-在secrets里添加五个仓库，分别取名为
+fork本项目到自己的仓库。
+
+在secrets里添加五个仓库，分别取名为：
 - WEBVPNACCOUNT
 - WEBVPNPASSWORD
 - NHDACCOUNT
 - NHDPASSWORD
 - SCKEY
+
+启用action。
+
+可以通过点击star测试项目。
 
 ## 各仓库的作用
 
