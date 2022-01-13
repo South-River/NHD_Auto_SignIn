@@ -31,6 +31,8 @@ class AutoSign():
   def run(self):
     self.webvpn_login()
     for i in range(len(self.nhd_username)):
+      print('username: ', self.nhd_username[i])
+      print('password: ', self.nhd_password[i])
       self.nhd_login(self.nhd_username[i], self.nhd_password[i])
     self.nhd_signin()
   
