@@ -70,6 +70,7 @@ class AutoSign():
       print("签到完成")
     except:
       print("已经签到过")
+    self.driver.find_element(By.XPATH, '//*[@id="info_block"]/tbody/tr/td/table/tbody/tr/td[1]/span/a[1]').click()
 
 def split(str):
   res = str.split('!')
