@@ -32,7 +32,7 @@ class AutoSign():
     self.webvpn_login()
     for i in range(len(self.nhd_username)):
       self.nhd_login(self.nhd_username[i], self.nhd_password[i])
-    self.nhd_signin()
+      self.nhd_signin()
   
   def webvpn_login(self):
     self.driver.get('https://webvpn.zju.edu.cn/')
