@@ -3,8 +3,14 @@ name: NHD_SignIn
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+      - 'README.md'
+  schedule:
+    - cron: 0 4 * * *
   pull_request:
     branches: [ master ]
+  watch:
+    types: [started]
   workflow_dispatch:
 
 jobs:
@@ -17,7 +23,7 @@ jobs:
       - name: Install packages
         run: |
           pip3 install selenium requests
-      - name: Run a multi-line script
+      - name: Run script
         env:
           WEBVPNACCOUNT: ${{ secrets.WEBVPNACCOUNT }}
           WEBVPNPASSWORD: ${{ secrets.WEBVPNPASSWORD }}
@@ -25,4 +31,4 @@ jobs:
           NHDPASSWORD: ${{ secrets.NHDPASSWORD }}
           SCKEY: ${{ secrets.SCKEY }}
         run: |
-          python3 test.py ${WEBVPNACCOUNT} ${WEBVPNPASSWORD} ${NHDACCOUNT} ${NHDPASSWORD} ${SCKEY}
+          python3 script.py ${WEBVPNACCOUNT} ${WEBVPNPASSWORD} ${NHDACCOUNT} ${NHDPASSWORD} ${SCKEY}
