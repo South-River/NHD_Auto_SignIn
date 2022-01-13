@@ -1,12 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+import requests
 import os
 import time
 import sys
 
 class AutoSign():
-  def __init__(self, webvpn_username, webvpn_password, nhd_username, nhd_password):
+  def __init__(self, webvpn_username, webvpn_password, nhd_username, nhd_password, sckey):
     chrome_options = webdriver.ChromeOptions()
     prefs = {"profile.managed_default_content_settings.images": 2}
     chrome_options.add_experimental_option("prefs", prefs)
@@ -27,6 +28,7 @@ class AutoSign():
     self.webvpn_password = webvpn_password
     self.nhd_username = nhd_username
     self.nhd_password = nhd_password
+    self.sckey = sckey
   
   def run(self):
     self.webvpn_login()
@@ -44,37 +46,46 @@ class AutoSign():
       print("webvpn登陆成功！")
     except:
       print("webvpn登陆失败！")
+      title = u'ERROR!'
+      content = 'webvpn登陆失败！'
+      data = {'text': title, 'desp': content}
+      requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
       
   def nhd_login(self, username, password):
     time.sleep(1)
     self.driver.get('http://www-nexushd-org.webvpn.zju.edu.cn:8001/login.php')
 
-    
-    self.driver.find_element(By.NAME, 'username').send_keys(username)
-    self.driver.find_element(By.NAME, 'password').send_keys(password)
-    print('username: ', username)
-    print('password: ', password)
-    self.driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
-    print("NHD登陆成功！")
-#     try:
-#       self.driver.find_element(By.NAME, 'username').send_keys(username)
-#       self.driver.find_element(By.NAME, 'password').send_keys(password)
-#       print('username: ', username)
-#       print('password: ', password)
-#       self.driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
-#       print("NHD登陆成功！")
-#     except:
-#       print("NHD登陆失败！")
+    try:
+      self.driver.find_element(By.NAME, 'username').send_keys(username)
+      self.driver.find_element(By.NAME, 'password').send_keys(password)
+      self.driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
+      print("NHD登陆成功！")
+    except:
+      print("NHD登陆失败！")
+      title = u'ERROR!'
+      content = 'NHD登陆失败！'
+      data = {'text': title, 'desp': content}
+      requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
       
   def nhd_signin(self):
     time.sleep(1)
+    
     try:
       self.driver.find_element(By.XPATH, '//*[@id="info_block"]/tbody/tr/td/table/tbody/tr/td[2]/span/a[2]').click()
       self.driver.find_element(By.NAME, 'content').send_keys('test')
       self.driver.find_element(By.XPATH, '//*[@id="qr"]').click()
       print("签到完成")
+      title = u'SUCCESS!'
+      content = '签到成功！'
+      data = {'text': title, 'desp': content}
+      requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
     except:
       print("已经签到过")
+      title = u'ERROR!'
+      content = '签到失败！'
+      data = {'text': title, 'desp': content}
+      requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
+      
     self.driver.find_element(By.XPATH, '//*[@id="info_block"]/tbody/tr/td/table/tbody/tr/td[1]/span/a[1]').click()
 
 def split(str):
@@ -86,9 +97,10 @@ if __name__ == "__main__":
   webvpn_password = sys.argv[2]
   nhd_username = sys.argv[3]
   nhd_password = sys.argv[4]
+  sckey = sys.argv[5]
   
   nhd_username = split(nhd_username)
   nhd_password = split(nhd_password)
   
-  signer = AutoSign(webvpn_username, webvpn_password, nhd_username, nhd_password)
+  signer = AutoSign(webvpn_username, webvpn_password, nhd_username, nhd_password, sckey)
   signer.run()
