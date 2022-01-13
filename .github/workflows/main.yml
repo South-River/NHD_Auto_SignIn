@@ -18,10 +18,5 @@ jobs:
         run: |
           pip3 install selenium
       - name: Run a multi-line script
-        env:
-          WEBVPNACCOUNT:${{secrets.WEBVPNACCOUNT}}
-          WEBVPNPASSWORD:${{secrets.WEBVPNPASSWORD}}
-          NHDACCOUNT:${{secrets.NHDACCOUNT}}
-          NHDPASSWORD:${{secrets.NHDPASSWORD}}
         run: |
           python3 test.py
