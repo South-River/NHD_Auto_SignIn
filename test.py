@@ -26,7 +26,7 @@ driver.find_element(By.XPATH, '//*[@id="Calc"]/div[1]/div[1]/div/div[1]/input').
 driver.find_element(By.XPATH, '//*[@id="loginPwd"]').send_keys('cnh112358')
 driver.find_element(By.XPATH, '//*[@id="Calc"]/div[3]/button').click()
 time.sleep(10)
-driver.find_element(By.XPATH, '//*[@id="rsSearch"]/div[2]/input[1]').send_keys('https://nexushd.org')
+driver.find_element(By.XPATH, '//*[@id="rsSearch"]/div[2]/input[1]').send_keys('http://nexushd.org/login.php')
 driver.find_element(By.XPATH, '//*[@id="rsSearch"]/div[2]/input[2]').click()
 
 time.sleep(10)
