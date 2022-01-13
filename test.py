@@ -46,10 +46,11 @@ class AutoSign():
       print("webvpn登陆成功！")
     except:
       print("webvpn登陆失败！")
-      title = u'ERROR!'
-      content = 'webvpn登陆失败！'
-      data = {'text': title, 'desp': content}
-      requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
+      if self.sckey:
+        title = u'ERROR!'
+        content = 'webvpn登陆失败！'
+        data = {'text': title, 'desp': content}
+        requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
       
   def nhd_login(self, username, password):
     time.sleep(1)
@@ -62,10 +63,11 @@ class AutoSign():
       print("NHD登陆成功！")
     except:
       print("NHD登陆失败！")
-      title = u'ERROR!'
-      content = 'NHD登陆失败！'
-      data = {'text': title, 'desp': content}
-      requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
+      if self.sckey:
+        title = u'ERROR!'
+        content = 'NHD登陆失败！'
+        data = {'text': title, 'desp': content}
+        requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
       
   def nhd_signin(self):
     time.sleep(1)
@@ -75,16 +77,18 @@ class AutoSign():
       self.driver.find_element(By.NAME, 'content').send_keys('test')
       self.driver.find_element(By.XPATH, '//*[@id="qr"]').click()
       print("签到完成")
-      title = u'SUCCESS!'
-      content = '签到成功！'
-      data = {'text': title, 'desp': content}
-      requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
+      if self.sckey:
+        title = u'SUCCESS!'
+        content = '签到成功！'
+        data = {'text': title, 'desp': content}
+        requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
     except:
       print("已经签到过")
-      title = u'ERROR!'
-      content = '签到失败！'
-      data = {'text': title, 'desp': content}
-      requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
+      if self.sckey:
+        title = u'SUCCESS!'
+        content = '已经签到过！'
+        data = {'text': title, 'desp': content}
+        requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
       
     self.driver.find_element(By.XPATH, '//*[@id="info_block"]/tbody/tr/td/table/tbody/tr/td[1]/span/a[1]').click()
 
