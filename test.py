@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 import os
 
 chrome_options = webdriver.ChromeOptions()
@@ -18,4 +19,10 @@ chromedriver = "/usr/bin/chromedriver"
 os.environ["webdriver.chrome.driver"] = chromedriver
 driver = webdriver.Chrome(chrome_options=chrome_options,executable_path=chromedriver)
 
-driver.get('https://v6.nexushd.org')
+driver.get('https://webvpn.zju.edu.cn/')
+time.sleep(10)
+driver.find_element(By.XPATH, '//*[@id="Calc"]/div[1]/div[1]/div/div[1]/input').send_keys('3190105607')
+driver.find_element(By.XPATH, '//*[@id="loginPwd"]').send_keys('cnh112358')
+driver.find_element(By.XPATH, '//*[@id="Calc"]/div[3]/button').click()
+driver.find_element(By.XPATH, '//*[@id="rsSearch"]/div[2]/input[1]').send_keys('https://nexushd.org')
+driver.find_element(By.XPATH, '//*[@id="rsSearch"]/div[2]/input[2]').click()
