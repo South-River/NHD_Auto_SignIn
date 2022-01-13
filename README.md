@@ -31,9 +31,9 @@ fork本项目到自己的仓库。
 
 例如，账号A用户名为abc，密码为123；账号B用户名为def，密码为456。那么你应该如下填写仓库内容：
 - NHDACCOUNT
-- - abc!def
+  - abc!def
 - NHDPASSWORD
-- - 123!456
+  - 123!456
 
 ### SCKEY（可选择）
 
