@@ -34,5 +34,5 @@ driver.find_element(By.NAME, 'password').send_keys('cnh112358')
 driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
 
 time.sleep(2)
-driver.find_element(By.XPATH, '//*[@id="shbox_text"]').send_keys('test')
+driver.find_element(By.XPATH, '//*[@id="shbox_text"]').send_keys('test1')
 driver.find_element(By.XPATH, '//*[@id="hbsubmit"]').click()
