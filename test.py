@@ -40,11 +40,8 @@ try:
   print("NHD登陆成功！")
 except:
   print("NHD登陆失败！")
-  
-time.sleep(2)
-driver.find_element(By.XPATH, '//*[@id="shbox_text"]').send_keys('test1')
-driver.find_element(By.XPATH, '//*[@id="hbsubmit"]').click()
 
+time.sleep(1)
 try:
   driver.find_element(By.XPATH, '//*[@id="info_block"]/tbody/tr/td/table/tbody/tr/td[2]/span/a[2]').click()
   driver.find_element(By.NAME, 'content').send_keys('test')
