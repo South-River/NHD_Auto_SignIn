@@ -46,12 +46,12 @@ class AutoSign():
       
   def nhd_login(self):
     time.sleep(1)
-    driver.get('http://www-nexushd-org.webvpn.zju.edu.cn:8001/login.php')
+    self.driver.get('http://www-nexushd-org.webvpn.zju.edu.cn:8001/login.php')
 
     try:
-      driver.find_element(By.NAME, 'username').send_keys(self.nhd_username)
-      driver.find_element(By.NAME, 'password').send_keys(self.nhd_password)
-      driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
+      self.driver.find_element(By.NAME, 'username').send_keys(self.nhd_username)
+      self.driver.find_element(By.NAME, 'password').send_keys(self.nhd_password)
+      self.driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
       print("NHD登陆成功！")
     except:
       print("NHD登陆失败！")
