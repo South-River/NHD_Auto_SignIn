@@ -21,19 +21,18 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 driver = webdriver.Chrome(chrome_options=chrome_options,executable_path=chromedriver)
 
 driver.get('https://webvpn.zju.edu.cn/')
-time.sleep(10)
+time.sleep(5)
 driver.find_element(By.XPATH, '//*[@id="Calc"]/div[1]/div[1]/div/div[1]/input').send_keys('3190105607')
 driver.find_element(By.XPATH, '//*[@id="loginPwd"]').send_keys('cnh112358')
 driver.find_element(By.XPATH, '//*[@id="Calc"]/div[3]/button').click()
-time.sleep(10)
-driver.find_element(By.XPATH, '//*[@id="rsSearch"]/div[2]/input[1]').send_keys('http://nexushd.org/login.php')
-driver.find_element(By.XPATH, '//*[@id="rsSearch"]/div[2]/input[2]').click()
 
-time.sleep(10)
+time.sleep(1)
+driver.get('http://www-nexushd-org.webvpn.zju.edu.cn:8001/login.php')
+
 driver.find_element(By.NAME, 'username').send_keys('爆裂')
 driver.find_element(By.NAME, 'password').send_keys('cnh112358')
 driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
 
-time.sleep(5)
+time.sleep(2)
 driver.find_element(By.XPATH, '//*[@id="shbox_text"]').send_keys('test')
 driver.find_element(By.XPATH, '//*[@id="hbsubmit"]').click()
