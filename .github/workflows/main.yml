@@ -23,5 +23,6 @@ jobs:
           WEBVPNPASSWORD: ${{ secrets.WEBVPNPASSWORD }}
           NHDACCOUNT: ${{ secrets.NHDACCOUNT }}
           NHDPASSWORD: ${{ secrets.NHDPASSWORD }}
+          SCKEY: ${{ secrets.SCKEY }}
         run: |
-          python3 test.py ${WEBVPNACCOUNT} ${WEBVPNPASSWORD} ${NHDACCOUNT} ${NHDPASSWORD}
+          python3 test.py ${WEBVPNACCOUNT} ${WEBVPNPASSWORD} ${NHDACCOUNT} ${NHDPASSWORD} ${SCKEY}
