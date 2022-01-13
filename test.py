@@ -27,8 +27,13 @@ class AutoSign():
     self.webvpn_password = webvpn_password
     self.nhd_username = nhd_username
     self.nhd_password = nhd_password
-
-  def webvpn_login(self)
+  
+  def run(self):
+    self.webvpn_login()
+    self.nhd_login()
+    self.nhd_signin()
+  
+  def webvpn_login(self):
     self.driver.get('https://webvpn.zju.edu.cn/')
     time.sleep(5)
     try:
@@ -67,4 +72,5 @@ if __name__ == "__main__":
   nhd_username = sys.argv[3]
   nhd_password = sys.argv[4]
   
-  
+  signer = AutoSign(webvpn_username, webvpn_password, nhd_username, nhd_password)
+  signer.run()
