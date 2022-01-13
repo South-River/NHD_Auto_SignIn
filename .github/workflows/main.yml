@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-python@master
       - name: Install packages
         run: |
-          pip3 install selenium
+          pip3 install selenium requests
       - name: Run a multi-line script
         env:
           WEBVPNACCOUNT: ${{ secrets.WEBVPNACCOUNT }}
