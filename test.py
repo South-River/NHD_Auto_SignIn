@@ -29,9 +29,11 @@ time.sleep(10)
 driver.find_element(By.XPATH, '//*[@id="rsSearch"]/div[2]/input[1]').send_keys('https://nexushd.org')
 driver.find_element(By.XPATH, '//*[@id="rsSearch"]/div[2]/input[2]').click()
 
+time.sleep(10)
 driver.find_element(By.NAME, 'username').send_keys('爆裂')
 driver.find_element(By.NAME, 'password').send_keys('cnh112358')
 driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
 
+time.sleep(5)
 driver.find_element(By.XPATH, '//*[@id="shbox_text"]').send_keys('test')
 driver.find_element(By.XPATH, '//*[@id="hbsubmit"]').click()
