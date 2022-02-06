@@ -64,9 +64,9 @@ class AutoSign():
       self.driver.find_element(By.NAME, 'username').send_keys(username)
       self.driver.find_element(By.NAME, 'password').send_keys(password)
       self.driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
-      print(username, "NHD登陆成功！")
+      print("NHD登陆成功！")
     except:
-      print(username, "NHD登陆失败！")
+      print("NHD登陆失败！")
       if self.sckey:
         title = u'ERROR!'
         self.content += username + 'NHD登陆失败！\n'
@@ -82,7 +82,7 @@ class AutoSign():
       self.driver.find_element(By.XPATH, '//*[@id="info_block"]/tbody/tr/td/table/tbody/tr/td[2]/span/a[2]').click()
       self.driver.find_element(By.NAME, 'content').send_keys('test')
       self.driver.find_element(By.XPATH, '//*[@id="qr"]').click()
-      print(username, "签到完成")
+      print("签到完成")
       if self.sckey:
         title = u'SUCCESS!'
         self.content += username + ' 签到成功！\n'
@@ -91,7 +91,7 @@ class AutoSign():
         if self.cnt == len(self.nhd_username):
           requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
     except:
-      print(username, "已经签到过")
+      print("已经签到过")
       if self.sckey:
         title = u'SUCCESS!'
         self.content += username + ' 已经签到过！\n'
