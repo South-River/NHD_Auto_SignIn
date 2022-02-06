@@ -64,9 +64,9 @@ class AutoSign():
       self.driver.find_element(By.NAME, 'username').send_keys(username)
       self.driver.find_element(By.NAME, 'password').send_keys(password)
       self.driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
-      print(username + "NHD登陆成功！")
+      print("NHD登陆成功！")
     except:
-      print(username + "NHD登陆失败！")
+      print("NHD登陆失败！")
       if self.sckey:
         title = u'ERROR!'
         self.content += username + 'NHD登陆失败！\n'
