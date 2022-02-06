@@ -31,8 +31,8 @@ class AutoSign():
     self.sckey = sckey
     
     self.cnt = 0;
-    title = ''
-    content = ''
+    
+    self.content = ''
   
   def run(self):
     self.webvpn_login()
@@ -69,8 +69,8 @@ class AutoSign():
       print(username + "NHD登陆失败！")
       if self.sckey:
         title = u'ERROR!'
-        content += username + 'NHD登陆失败！\n'
-        data = {'text': title, 'desp': content}
+        self.content += username + 'NHD登陆失败！\n'
+        data = {'text': title, 'desp': self.content}
         self.cnt += 1
         if self.cnt == len(self.nhd_username)-1:
           requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
@@ -85,8 +85,8 @@ class AutoSign():
       print(username + "签到完成")
       if self.sckey:
         title = u'SUCCESS!'
-        content += username + ' 签到成功！\n'
-        data = {'text': title, 'desp': content}
+        self.content += username + ' 签到成功！\n'
+        data = {'text': title, 'desp': self.content}
         self.cnt += 1
         if self.cnt == len(self.nhd_username)-1:
           requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
@@ -94,8 +94,8 @@ class AutoSign():
       print(username + "已经签到过")
       if self.sckey:
         title = u'SUCCESS!'
-        content += username + ' 已经签到过！\n'
-        data = {'text': title, 'desp': content}
+        self.content += username + ' 已经签到过！\n'
+        data = {'text': title, 'desp': self.content}
         self.cnt += 1
         if self.cnt == len(self.nhd_username):
           requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
