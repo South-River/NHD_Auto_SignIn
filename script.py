@@ -29,12 +29,16 @@ class AutoSign():
     self.nhd_username = nhd_username
     self.nhd_password = nhd_password
     self.sckey = sckey
+    
+    self.cnt = 0;
+    title = ''
+    content = ''
   
   def run(self):
     self.webvpn_login()
     for i in range(len(self.nhd_username)):
       self.nhd_login(self.nhd_username[i], self.nhd_password[i])
-      self.nhd_signin()
+      self.nhd_signin(self.nhd_username[i])
   
   def webvpn_login(self):
     self.driver.get('https://webvpn.zju.edu.cn/')
@@ -60,35 +64,41 @@ class AutoSign():
       self.driver.find_element(By.NAME, 'username').send_keys(username)
       self.driver.find_element(By.NAME, 'password').send_keys(password)
       self.driver.find_element(By.XPATH, "//*[@id='nav_block']/form[2]/table/tbody/tr[7]/td/button[1]").click()
-      print("NHD登陆成功！")
+      print(username + "NHD登陆成功！")
     except:
-      print("NHD登陆失败！")
+      print(username + "NHD登陆失败！")
       if self.sckey:
         title = u'ERROR!'
-        content = 'NHD登陆失败！'
+        content += username + 'NHD登陆失败！\n'
         data = {'text': title, 'desp': content}
-        requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
+        self.cnt += 1
+        if self.cnt == len(self.nhd_username)-1:
+          requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
       
-  def nhd_signin(self):
+  def nhd_signin(self, username):
     time.sleep(1)
     
     try:
       self.driver.find_element(By.XPATH, '//*[@id="info_block"]/tbody/tr/td/table/tbody/tr/td[2]/span/a[2]').click()
       self.driver.find_element(By.NAME, 'content').send_keys('test')
       self.driver.find_element(By.XPATH, '//*[@id="qr"]').click()
-      print("签到完成")
+      print(username + "签到完成")
       if self.sckey:
         title = u'SUCCESS!'
-        content = '签到成功！'
+        content += username + ' 签到成功！\n'
         data = {'text': title, 'desp': content}
-        requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
+        self.cnt += 1
+        if self.cnt == len(self.nhd_username)-1:
+          requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
     except:
-      print("已经签到过")
+      print(username + "已经签到过")
       if self.sckey:
         title = u'SUCCESS!'
-        content = '已经签到过！'
+        content += username + ' 已经签到过！\n'
         data = {'text': title, 'desp': content}
-        requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
+        self.cnt += 1
+        if self.cnt == len(self.nhd_username):
+          requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
       
     self.driver.find_element(By.XPATH, '//*[@id="info_block"]/tbody/tr/td/table/tbody/tr/td[1]/span/a[1]').click()
 
