@@ -6,7 +6,7 @@ on:
     paths-ignore:
       - 'README.md'
   schedule:
-    - cron: 0 4 * * *
+    - cron: 0 2 * * *
   pull_request:
     branches: [ master ]
   watch:
