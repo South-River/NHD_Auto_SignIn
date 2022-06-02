@@ -100,7 +100,7 @@ class AutoSign():
         if self.cnt == len(self.nhd_username):
           requests.post(f'http://sc.ftqq.com/{self.sckey}.send', data)
       
-    self.driver.find_element(By.XPATH, '//*[@id="info_block"]/tbody/tr/td/table/tbody/tr/td[1]/span/a[1]').click()
+    self.driver.find_element(By.XPATH, '/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table[2]/tbody/tr/td/div/table/tbody/tr/td/form/input[2]').click()
 
 def split(str):
   res = str.split('!')
